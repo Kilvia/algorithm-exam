@@ -1,3 +1,6 @@
+# Input: two n-bit binaryintegers, stored in to n-elements array
+# Output: the sum of the two binaries stored in an array of n+1-elements
+
 def binSum(a, b):
     j = len(a)
     carry = 0
