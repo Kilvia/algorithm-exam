@@ -1,5 +1,5 @@
 # Input: a sequence of n numbers
-# Output: a reordering of the input sequences in a non decreasin order
+# Output: a reordering of the input sequences in a non decreasing order
 
 def sort(seq):
     for i in range(1, len(seq), 1):
