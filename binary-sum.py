@@ -1,0 +1,21 @@
+def binSum(a, b):
+    j = len(a)
+    carry = 0
+    c = [0] * (j+1)
+
+    for i in range(len(a)-1, -1, -1):
+        c[j] = (a[i] + b[i] + int(carry)) % 2
+        carry = (a[i] + b[i] + int(carry)) / 2
+        j -= 1
+
+    c[j] = int(carry)
+
+    return c
+
+if __name__ == '__main__':
+    
+    a = [1, 1]
+    b = [1, 1]
+
+    c = binSum(a, b)
+    print(c)
