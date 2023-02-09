@@ -30,9 +30,16 @@ def merge(a, p, q, r):
             a[k] = r_array[j]
             j += 1
 
+def merge_sort(A, p, r):
+    if p < r:
+        q = int((p+r)/2)
+        merge_sort(A,p,q)
+        merge_sort(A,q+1,r)
+        merge(A,p,q,r)
+
 
 if __name__ == "__main__":
     a = [2, 4, 5, 7, 1, 2, 3, 6]
     # Index from 1 - 8
-    merge(a, 1, 4, 8)
+    merge_sort(a, 1, 8)
     print(a)
