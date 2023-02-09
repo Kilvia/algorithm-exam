@@ -8,10 +8,8 @@ def sort(a):
         for j in range(i+1, len(a)):
             if a[index] > a[j]:
                 index = j
-        
-        aux = a[index]
-        a[index] = a[i]
-        a[i] = aux
+
+        a[index], a[i] = a[i], a[index]
 
 if __name__ == "__main__":
     a = [5, 10, 1, 6, 8, 2]

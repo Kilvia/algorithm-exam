@@ -6,9 +6,7 @@ def max_heapify(A, i):
     largest = l if l < len(A) and A[l] > A[i] else i
     if r < len(A) and A[r] > A[largest]: largest = r 
     if largest != i: 
-        aux = A[largest]
-        A[largest] = A[i]
-        A[i] = aux
+        A[largest], A[i] = A[i], A[largest]
         max_heapify(A, largest)
 
 def min_heapify(A, i):
@@ -19,9 +17,7 @@ def min_heapify(A, i):
     smalest = l if l < len(A) and A[l] < A[i] else i
     if r < len(A) and A[r] < A[smalest]: smalest = r
     if smalest != i:
-        aux = A[smalest]
-        A[smalest] = A[i]
-        A[i] = aux
+        A[smalest], A[i] = A[i], A[smalest]
         min_heapify(A, smalest)
 
 def build_max_heap(A):
@@ -110,9 +106,7 @@ def increase_key(A, i, key):
 
     while i > 0 and A[ind] < A[i-1]:
         
-        aux = A[i-1]
-        A[i-1] = A[ind]
-        A[ind] = aux
+        A[i-1], A[ind] = A[ind], A[i-1]
         
         i = ind + 1
         ind = (int)((i/2)-1)
@@ -128,9 +122,7 @@ def decrease_key(A, i, key):
 
     while i > 0 and A[ind] > A[i-1]:
         
-        aux = A[i-1]
-        A[i-1] = A[ind]
-        A[ind] = aux
+        A[i-1], A[ind] = A[ind], A[i-1]
         
         i = ind + 1
         ind = (int)((i/2)-1)
