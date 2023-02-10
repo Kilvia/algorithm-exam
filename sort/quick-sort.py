@@ -1,3 +1,6 @@
+import random
+
+
 def partition(A, p, r):
     i = p - 2
     key = A[r-1] 
@@ -31,12 +34,19 @@ def partition_mod(A, p, r):
         return (int)((p+r)/2)
     else:
         return (i+2)
-        
+
+def random_partition(A, p, r):
+    i = random.randint(p-1, r-1) 
+    A[r-1], A[i] = A[i], A[r-1]   
+
+    return partition(A, p, r)   
 
 def quicksort(A, p, r):
     if p < r:
-        # q = partition(A, p, r)
-        q = partition_mod(A, p, r)
+        # # q = partition(A, p, r)
+        # q = partition_mod(A, p, r)
+        q = random_partition(A, p, r)
+
         # since A[q] is already in the right position call quick sort again for it left and right side elements
         quicksort(A, p, q-1)
         quicksort(A, q+1, r)
