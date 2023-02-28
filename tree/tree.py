@@ -51,7 +51,7 @@ class Tree():
                 node = node.left
             else:
                 node = node.right
-                
+
         return node
     
     def minimum(self):
@@ -93,7 +93,24 @@ class Tree():
 
     def print_tree(self):
         print_node(self.root)
-            
+    
+def print_inoder(root):
+    if root:
+        print_inoder(root.left)
+        print(root.key, end=" ")
+        print_inoder(root.right)
+
+def print_preoder(root):
+    if root:
+        print(root.key, end=" ")
+        print_preoder(root.left)
+        print_preoder(root.right)
+
+def print_postoder(root):
+    if root:
+        print_postoder(root.left)
+        print_postoder(root.right)
+        print(root.key, end=" ")
 
 if __name__ == "__main__":
     tree = Tree()  
@@ -126,3 +143,28 @@ if __name__ == "__main__":
     succ_asw = tree.successor(succ)
     print("Predecessor of number ", pred.key,": ", pred_asw.key)
     print("Successor of number ", succ.key,": ", succ_asw.key)
+    print("---------------------------------")
+    tree_1 = Tree()  
+    tree_1.insert(25)
+    tree_1.insert(15)
+    tree_1.insert(50)
+    tree_1.insert(10)
+    tree_1.insert(22)
+    tree_1.insert(35)
+    tree_1.insert(70)
+    tree_1.insert(4)
+    tree_1.insert(12)
+    tree_1.insert(18)
+    tree_1.insert(24)
+    tree_1.insert(31)
+    tree_1.insert(44)
+    tree_1.insert(66)
+    tree_1.insert(90)
+    tree_1.print_tree()
+    print("---------------------------------")
+    print("Print the tree in inoder: ", end=" ")
+    print_inoder(tree_1.root)
+    print("\nPrint the tree in preoder: ", end=" ")
+    print_preoder(tree_1.root)
+    print("\nPrint the tree in postoder: ", end=" ")
+    print_postoder(tree_1.root)
