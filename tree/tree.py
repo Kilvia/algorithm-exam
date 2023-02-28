@@ -35,6 +35,31 @@ class Tree():
                 node_aux.right = Node(key)
                 node_aux.right.parent = node_aux
 
+    def transplant(self, node_sub, node):
+        if node.parent == None:
+            self.root = node_sub
+        elif node == node.parent.left:
+            node.parent.left = node_sub
+        else: node.parent.right = node_sub
+
+        if node_sub != None:
+            node_sub.parent = node.parent
+
+    def delete(self, node):
+        if node.left == None:
+            self.transplant(node.right, node)
+        elif node.right == None:
+            self.transplant(node.left, node)
+        else:
+            y = self.minimum(node.right)
+            if y.parent != node:
+                self.transplant(y.right, y)
+                y.right = node.right
+                y.right.parent = y
+            self.transplant(y, node)
+            y.left = node.left
+            y.left.p = y      
+
     def search_rec(self, node, key):
         if node == None or node.key == key:
             return node
@@ -54,21 +79,17 @@ class Tree():
 
         return node
     
-    def minimum(self):
-        aux = self.root
+    def minimum(self, node):
+        while node.left != None:
+            node = node.left
         
-        while aux.left != None:
-            aux = aux.left
-        
-        return aux
+        return node
     
-    def maximum(self):
-        aux = self.root
+    def maximum(self, node):
+        while node.right != None:
+            node = node.right
 
-        while aux.right != None:
-            aux = aux.right
-
-        return aux
+        return node
     
     def successor(self, node):
         if node.right != None:
@@ -127,8 +148,8 @@ if __name__ == "__main__":
     tree.insert(9)
     tree.print_tree()
     print("---------------------------------")
-    min = tree.minimum()
-    max = tree.maximum()
+    min = tree.minimum(tree.root)
+    max = tree.maximum(tree.root)
     print("Minimum element: ", min.key)
     print("Maximum element: ", max.key)
     print("---------------------------------")
@@ -168,3 +189,7 @@ if __name__ == "__main__":
     print_preoder(tree_1.root)
     print("\nPrint the tree in postoder: ", end=" ")
     print_postoder(tree_1.root)
+    print("---------------------------------")
+    dele = tree.search_ite(15)
+    tree.delete(dele)
+    tree.print_tree()
