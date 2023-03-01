@@ -68,6 +68,9 @@ class GraphAdjList(Graph):
 
             u.color = "black"
 
+    def dfs(self, node):
+        print(1)
+    
     def print_graph(self):
         for i in range(self.vertex_am):
             print(self.list[i].vertex, end="")
@@ -76,3 +79,12 @@ class GraphAdjList(Graph):
                 print("\t->\t", aux.vertex, end="")
                 aux = aux.next
             print()
+
+def print_path(graph, node_s, node_end):
+        if node_s == node_end:
+            print(node_s.vertex, end=" ")
+        elif node_end.pred == None:
+            print("No path from vertex", node_s, "to", node_end)
+        else:
+            print_path(graph, node_s, node_end.pred)
+            print("->", node_end.vertex, end=" ")
