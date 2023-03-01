@@ -1,13 +1,22 @@
 from graph import Graph, Node
+from queue import Queue
+import math
+
+class Vertex(Node):
+    def __init__(self, value=None):
+        super().__init__(value)
+        self.color = None
+        self.distance = None
+        self.pred = None
 
 class GraphAdjList(Graph):
-    def __init__(self, vertex_amount):
-        super().__init__(vertex_amount)
-        self.list = [None] * vertex_amount
-    
+    def __init__(self, vertex_am):
+        super().__init__(vertex_am)
+        self.list = [None] * vertex_am
+
     def add_vertex(self, vertex):
         if vertex not in self.list:
-            self.list[vertex-1] = Node(vertex)
+            self.list[vertex-1] = Vertex(vertex)
         else:
             print("!!! Vertex ", vertex," already part of the graph !!!")
     
@@ -15,7 +24,7 @@ class GraphAdjList(Graph):
         i = 0
 
         if self.list[vertex_1-1].next == None:
-            self.list[vertex_1-1].next = Node(vertex_2)
+            self.list[vertex_1-1].next = Vertex(vertex_2)
         else: 
             aux = self.list[vertex_1-1].next
             
@@ -23,9 +32,41 @@ class GraphAdjList(Graph):
                 aux = aux.next
             
             if aux.next == None:
-                aux.next = Node(vertex_2)
+                aux.next = Vertex(vertex_2)
             else:
                 print("!!! Edge ", vertex_1, " ", vertex_2, " already exist !!!")
+    
+    def bfs(self, node):
+        
+        print("Distance from vertex ", node.vertex)
+        for i in range(self.vertex_am):
+            self.list[i].color = "white"
+            self.list[i].distance = math.inf
+            self.list[i].pred = None
+        
+        node.color = "gray"
+        node.distance = 0 
+        node.pred = None
+
+        q = Queue(maxsize=self.vertex_am)
+        q.put(node)
+
+        while not(q.empty()):
+            
+            u = q.get()
+            print("Vertex", u.vertex, ":", self.list[u.vertex-1].distance)
+            v = u.next
+            
+            while v != None:
+                if self.list[v.vertex-1].color == "white":
+            
+                    self.list[v.vertex-1].color = "gray"
+                    self.list[v.vertex-1].distance = self.list[u.vertex-1].distance + 1
+                    self.list[v.vertex-1].pred = u
+                    q.put(self.list[v.vertex-1])
+                v = v.next
+
+            u.color = "black"
 
     def print_graph(self):
         for i in range(self.vertex_am):

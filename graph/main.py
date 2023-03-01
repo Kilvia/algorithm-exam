@@ -81,4 +81,7 @@ if __name__ == "__main__":
     adjl_d.add_edge(6, 6)
     adjl_d.print_graph()
     print("**************************************")
+    print("BFS")
+    print("--------------------------------------")
+    adjl.bfs(adjl.list[0])
 
