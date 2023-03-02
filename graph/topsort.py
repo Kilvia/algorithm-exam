@@ -2,18 +2,6 @@ from adjlist import GraphAdjList, Vertex
 
 aux = []
 
-class LinkedList:
-    def __init__(self):
-        self.head = None
-    
-    def insert(self, node):
-
-        if self.head == None:
-            self.head = node
-        else:
-            node.next = self.head
-            self.head = node
-
 def dfs_visit(graph, node):
         
     global time
