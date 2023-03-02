@@ -1,4 +1,4 @@
-from adjlist import GraphAdjList, print_path
+from adjlist import GraphAdjList
 from adjmatrix import GraphAdjMatrix
 
 if __name__ == "__main__":
@@ -88,4 +88,8 @@ if __name__ == "__main__":
     node_start = adjl.list[0]
     node_end = adjl.list[3]
     print("Search path from vertex", node_start.vertex, "to vertex", node_end.vertex)
-    print_path(adjl, node_start, node_end)
+    adjl.print_path(node_start, node_end)
+    print("\n**************************************")
+    print("DFS")
+    print("--------------------------------------")
+    adjl_d.dfs()

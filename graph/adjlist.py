@@ -2,17 +2,21 @@ from graph import Graph, Node
 from queue import Queue
 import math
 
+time = 0
+
 class Vertex(Node):
     def __init__(self, value=None):
         super().__init__(value)
         self.color = None
         self.distance = None
+        self.f = None
         self.pred = None
 
 class GraphAdjList(Graph):
     def __init__(self, vertex_am):
         super().__init__(vertex_am)
         self.list = [None] * vertex_am
+        self.time = 0
 
     def add_vertex(self, vertex):
         if vertex not in self.list:
@@ -68,8 +72,36 @@ class GraphAdjList(Graph):
 
             u.color = "black"
 
-    def dfs(self, node):
-        print(1)
+    def dfs_visit(self, node):
+        
+        global time
+        time += 1
+        self.list[node.vertex - 1].distance = time
+        self.list[node.vertex - 1].color = "gray"
+        temp = self.list[node.vertex - 1].next
+        print(node.vertex, end=" ")
+
+        while temp != None:
+            if self.list[temp.vertex - 1].color == "white":
+                self.list[temp.vertex - 1].pred = node
+                self.dfs_visit(temp)
+            temp = temp.next
+
+        node.color = "black"
+        time += 1
+        node.f = time
+
+    def dfs(self):
+        global time
+        for i in range(self.vertex_am):
+            self.list[i].color = "white"
+            self.list[i].pred = None
+        
+        time = 0
+
+        for i in range(self.vertex_am):
+            if self.list[i].color == "white":
+                self.dfs_visit(self.list[i])
     
     def print_graph(self):
         for i in range(self.vertex_am):
@@ -80,11 +112,11 @@ class GraphAdjList(Graph):
                 aux = aux.next
             print()
 
-def print_path(graph, node_s, node_end):
-        if node_s == node_end:
-            print(node_s.vertex, end=" ")
-        elif node_end.pred == None:
-            print("No path from vertex", node_s, "to", node_end)
-        else:
-            print_path(graph, node_s, node_end.pred)
-            print("->", node_end.vertex, end=" ")
+    def print_path(self, node_s, node_end):
+            if node_s == node_end:
+                print(node_s.vertex, end=" ")
+            elif node_end.pred == None:
+                print("No path from vertex", node_s, "to", node_end)
+            else:
+                self.print_path(node_s, node_end.pred)
+                print("->", node_end.vertex, end=" ")
