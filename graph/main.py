@@ -1,6 +1,6 @@
 from adjlist import GraphAdjList
 from adjmatrix import GraphAdjMatrix
-
+from topsort import top_sort
 if __name__ == "__main__":
     print("======================================")
     print("Graph Represented by Adjacent Matrix")
@@ -93,3 +93,11 @@ if __name__ == "__main__":
     print("DFS")
     print("--------------------------------------")
     adjl_d.dfs()
+    print("**************************************")
+    print("Topological Sort")
+    print("--------------------------------------")
+    top = top_sort(adjl_d)
+    print("Result: ", end=" ")
+    for i in top:
+        print(i.vertex, end=" ")
+    print()

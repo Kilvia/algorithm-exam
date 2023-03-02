@@ -16,7 +16,6 @@ class GraphAdjList(Graph):
     def __init__(self, vertex_am):
         super().__init__(vertex_am)
         self.list = [None] * vertex_am
-        self.time = 0
 
     def add_vertex(self, vertex):
         if vertex not in self.list:
@@ -89,7 +88,7 @@ class GraphAdjList(Graph):
 
         node.color = "black"
         time += 1
-        node.f = time
+        self.list[node.vertex - 1].f = time
 
     def dfs(self):
         global time
@@ -102,7 +101,8 @@ class GraphAdjList(Graph):
         for i in range(self.vertex_am):
             if self.list[i].color == "white":
                 self.dfs_visit(self.list[i])
-    
+        print()
+
     def print_graph(self):
         for i in range(self.vertex_am):
             print(self.list[i].vertex, end="")
