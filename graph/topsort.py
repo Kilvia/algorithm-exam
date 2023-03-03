@@ -2,6 +2,18 @@ from adjlist import GraphAdjList, Vertex
 
 aux = []
 
+class LinkedList:
+    def __init__(self):
+        self.head = None
+    
+    def insert(self, node):
+
+        if self.head == None:
+            self.head = node
+        else:
+            node.next = self.head
+            self.head = node
+
 def dfs_visit(graph, node):
         
     global time
@@ -26,7 +38,7 @@ def dfs_visit(graph, node):
         
     aux.insert(0, graph.list[node.vertex - 1])
     
-
+# Print the nodes time in decreasing order
 def dfs(graph):
     
     global time
@@ -41,7 +53,6 @@ def dfs(graph):
     for i in range(graph.vertex_am):
         if graph.list[i].color == "white":
             dfs_visit(graph, graph.list[i])
-    
     return aux
 
 def top_sort(graph):

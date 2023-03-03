@@ -1,6 +1,7 @@
 from adjlist import GraphAdjList
 from adjmatrix import GraphAdjMatrix
 from topsort import top_sort
+from stronglyconn import conn
 if __name__ == "__main__":
     print("======================================")
     print("Graph Represented by Adjacent Matrix")
@@ -101,3 +102,7 @@ if __name__ == "__main__":
     for i in top:
         print(i.vertex, end=" ")
     print()
+    print("**************************************")
+    print("Strongly Connected Components")
+    print("--------------------------------------")
+    conn(adjl_d)
