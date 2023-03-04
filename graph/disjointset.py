@@ -5,10 +5,19 @@ from linkedlist import LinkedList, Element
 def find_set_linked_list(element):
     return element.head
 
+def find_set_forest(x):
+    if x != x.p:
+        x.p = find_set_forest(x.p)
+    return x.p
+
 def make_set_linked_list(element):
     set = LinkedList()
     set.add(element.key)
     return set
+
+def make_set_forest(x):
+    x.p = x
+    x.rank = 0
 
 def union_linked_list(elem_1, elem_2):
     union = LinkedList()
@@ -38,6 +47,17 @@ def union_linked_list(elem_1, elem_2):
 
     return union
 
+def link_forest(x, y):
+    if x.rank > y.rank:
+        y.p = x
+    else:
+        x.p = y
+        if x.rank == y.rank:
+            y.rank = y.rank + 1
+
+def union_forest(x, y):
+    link_forest(find_set_forest(x), find_set_forest(y))
+    
 x = LinkedList()
 x.add("f")  
 x.add("g")      
