@@ -12,7 +12,7 @@ def find_set_forest(x):
 
 def make_set_linked_list(element):
     set = LinkedList()
-    set.add(element.key)
+    set.add(element)
     return set
 
 def make_set_forest(x):
@@ -68,9 +68,9 @@ elem = x.search("g")
 elem_1 = x.search("f")
 elem_2 = x.search("d")
 res = find_set_linked_list(elem)
-set_1 = make_set_linked_list(elem)
-set_2 = make_set_linked_list(elem_1)
-set_3 = make_set_linked_list(elem_2)
+set_1 = make_set_linked_list(elem.key)
+set_2 = make_set_linked_list(elem_1.key)
+set_3 = make_set_linked_list(elem_2.key)
 union = union_linked_list(set_1, set_2)
 union = union_linked_list(union, set_3)
 union.print_list()
