@@ -115,23 +115,23 @@ class Tree():
     def print_tree(self):
         print_node(self.root)
     
-def print_inoder(root):
-    if root:
-        print_inoder(root.left)
-        print(root.key, end=" ")
-        print_inoder(root.right)
+    def print_inoder(self):
+        if self.root:
+            self.print_inoder(self.root.left)
+            print(self.root.key, end=" ")
+            self.print_inoder(self.root.right)
 
-def print_preoder(root):
-    if root:
-        print(root.key, end=" ")
-        print_preoder(root.left)
-        print_preoder(root.right)
+    def print_preoder(self):
+        if self.root:
+            print(self.root.key, end=" ")
+            self.print_preoder(self.root.left)
+            self.print_preoder(self.root.right)
 
-def print_postoder(root):
-    if root:
-        print_postoder(root.left)
-        print_postoder(root.right)
-        print(root.key, end=" ")
+    def print_postoder(self):
+        if self.root:
+            self.print_postoder(self.root.left)
+            self.print_postoder(self.root.right)
+            print(self.root.key, end=" ")
 
 if __name__ == "__main__":
     tree = Tree()  
@@ -184,11 +184,11 @@ if __name__ == "__main__":
     tree_1.print_tree()
     print("---------------------------------")
     print("Print the tree in inoder: ", end=" ")
-    print_inoder(tree_1.root)
+    tree_1.print_inoder()
     print("\nPrint the tree in preoder: ", end=" ")
-    print_preoder(tree_1.root)
+    tree_1.print_preoder()
     print("\nPrint the tree in postoder: ", end=" ")
-    print_postoder(tree_1.root)
+    tree_1.print_postoder()
     print("---------------------------------")
     dele = tree.search_ite(15)
     tree.delete(dele)
