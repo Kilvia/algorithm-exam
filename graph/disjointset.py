@@ -1,4 +1,7 @@
 from linkedlist import LinkedList, Element
+import sys
+sys.path.insert(0, '/home/kilvia/Documents/algorithm-exam/tree')
+from tree import Tree, Node
 
 # For this linked list each elements points to the 
 # head and the last one points to the tail too
@@ -74,3 +77,5 @@ set_3 = make_set_linked_list(elem_2.key)
 union = union_linked_list(set_1, set_2)
 union = union_linked_list(union, set_3)
 union.print_list()
+forest = Tree()
+forest.insert("c")
